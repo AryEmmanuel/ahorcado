@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>	
+		<meta charset="utf-8">
+		<title>Ahorcado</title>
+		<script src="palabras.js"></script>
+		<script type="text/javascript" src="ahorcado.js"></script>
+		<script src="jquery.min.js"></script>
+		<link rel="stylesheet" href="ahorcado.css">
+		<link rel="stylesheet" href="animate.css">
+	</head>
+	<body>
+		<div class="container">
+			<p class="header" id="header">¡Adivina letra a letra!</p>
+			<div class="stats">
+				<p>
+					<span class="h1" id="mensaje" class="mensaje animated"></span> 
+					<strong class="err" id="err">
+						Tienes <span id="errores">5 intentos</span>
+					</strong>
+				</p>
+			</div>
+			<div id="cuerpo" class="animated fadeInLeft">
+				<p id="pista">_ _ _</p>
+				<canvas id="c"></canvas>
+				<p id="actions">
+					<label id="la">
+						Elige una letra:
+					</label>
+					<input type="text" id="letra" autofocus="true"/>
+					<span id="action"></span>
+				</p>
+			</div>
+			<script>
+				iniciar();
+			</script>
+		</div>
+	</body>
+</html>
