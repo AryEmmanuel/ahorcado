@@ -1,3 +1,4 @@
+"use strict";
 var palabra, hombre, l, espacio;
 
 //Nuestras palabras están en el archivo palabras.js
@@ -42,126 +43,132 @@ var recargar = function()
 };
 
 //Declaracion de la clase Ahorcado
-var Ahorcado = function(con) 
-{
-	this.contexto = con;
-	this.maximo = 5;
-	this.intentos = 0;
-	this.vivo = true;
+class Ahorcado {
 
-	this.dibujar();
-};
+	constructor(con) {
 
-Ahorcado.prototype.dibujar = function() 
-{
-	var dibujo = this.contexto;
+		this.contexto = con;
+		this.maximo = 5;
+		this.intentos = 0;
+		this.vivo = true;
 
-	//Dibujar el poste
-	dibujo.beginPath();
-	dibujo.moveTo(150,100);
-	dibujo.lineTo(150,50);
-	dibujo.lineTo(400,50);
-	dibujo.lineTo(400,350);
-	dibujo.lineWidth = 6;
-	dibujo.strokeStyle = "#000";
-	dibujo.stroke();
-	dibujo.closePath();
+		this.dibujar();
+		
+	}
 
-	if (this.intentos > 0) 
-	{
-		// intentos = 1 ---> rostro
+	dibujar() {
+
+		var dibujo = this.contexto;
+
+		//Dibujar el poste
 		dibujo.beginPath();
-		dibujo.arc(150, 140, 40, 0, (Math.PI * 2), false);
-		dibujo.strokeStyle = "brown";
-		dibujo.lineWidth = 2;
+		dibujo.moveTo(150,100);
+		dibujo.lineTo(150,50);
+		dibujo.lineTo(400,50);
+		dibujo.lineTo(400,350);
+		dibujo.lineWidth = 6;
+		dibujo.strokeStyle = "#000";
 		dibujo.stroke();
 		dibujo.closePath();
 
-		if (this.intentos > 1) 
+		if (this.intentos > 0) 
 		{
-			// intentos = 2 --> torso
+			// intentos = 1 ---> rostro
 			dibujo.beginPath();
-			dibujo.moveTo(150, 180);
-			dibujo.lineTo(150, 250);
+			dibujo.arc(150, 140, 40, 0, (Math.PI * 2), false);
 			dibujo.strokeStyle = "brown";
 			dibujo.lineWidth = 2;
 			dibujo.stroke();
 			dibujo.closePath();
 
-			if (this.intentos > 2) 
+			if (this.intentos > 1) 
 			{
-				//intentos = 3 --> brazos
+				// intentos = 2 --> torso
 				dibujo.beginPath();
-				dibujo.moveTo(120, 220);
-				dibujo.lineTo(150, 180);
-				dibujo.lineTo(180, 220);
+				dibujo.moveTo(150, 180);
+				dibujo.lineTo(150, 250);
 				dibujo.strokeStyle = "brown";
 				dibujo.lineWidth = 2;
 				dibujo.stroke();
 				dibujo.closePath();
 
-				if (this.intentos > 3) 
+				if (this.intentos > 2) 
 				{
-					//intentos = 4 --> piernas
+					//intentos = 3 --> brazos
 					dibujo.beginPath();
-					dibujo.moveTo(120, 290);
-					dibujo.lineTo(150, 250);
-					dibujo.lineTo(180, 290);
+					dibujo.moveTo(120, 220);
+					dibujo.lineTo(150, 180);
+					dibujo.lineTo(180, 220);
 					dibujo.strokeStyle = "brown";
 					dibujo.lineWidth = 2;
 					dibujo.stroke();
 					dibujo.closePath();
 
-					if (this.intentos > 4) 
+					if (this.intentos > 3) 
 					{
-						//intentos = 5 --> ojos muertos
-
+						//intentos = 4 --> piernas
 						dibujo.beginPath();
-						//Ojo izquierdo
-						dibujo.moveTo(125,120);
-						dibujo.lineTo(145,145);
-						dibujo.moveTo(145,120);
-						dibujo.lineTo(125,145);
-
-						//Ojo derecho
-						dibujo.moveTo(155,120);
-						dibujo.lineTo(175,145);
-						dibujo.moveTo(175,120);
-						dibujo.lineTo(155,145);
-
-						dibujo.strokeStyle = "orangered";
+						dibujo.moveTo(120, 290);
+						dibujo.lineTo(150, 250);
+						dibujo.lineTo(180, 290);
+						dibujo.strokeStyle = "brown";
 						dibujo.lineWidth = 2;
 						dibujo.stroke();
 						dibujo.closePath();
 
+						if (this.intentos > 4) 
+						{
+							//intentos = 5 --> ojos muertos
+
+							dibujo.beginPath();
+							//Ojo izquierdo
+							dibujo.moveTo(125,120);
+							dibujo.lineTo(145,145);
+							dibujo.moveTo(145,120);
+							dibujo.lineTo(125,145);
+
+							//Ojo derecho
+							dibujo.moveTo(155,120);
+							dibujo.lineTo(175,145);
+							dibujo.moveTo(175,120);
+							dibujo.lineTo(155,145);
+
+							dibujo.strokeStyle = "orangered";
+							dibujo.lineWidth = 2;
+							dibujo.stroke();
+							dibujo.closePath();
+
+						}
 					}
+
 				}
 
 			}
-
 		}
-	}
-};
 
-Ahorcado.prototype.trazar = function() 
-{
-	this.intentos++;
-	if (this.intentos == 4) {
-		header.innerText = "¡Cuidado!";
 	}
-	if (this.intentos >= this.maximo) 
-	{
-		this.vivo = false;
-		$("#header").text("¡Se acabó!");
-		mensaje.innerText = "Estás muerto :(  ";
-		recargar();
-		$(".stats").css({
-			"background-color": "rgb(234, 134, 134)"
-		});
-		$("#mensaje").addClass("zoomInDown animated");
+
+	trazar() {
+
+		this.intentos++;
+		if (this.intentos == 4) {
+			header.innerText = "¡Cuidado!";
+		}
+		if (this.intentos >= this.maximo) 
+		{
+			this.vivo = false;
+			$("#header").text("¡Se acabó!");
+			mensaje.innerText = "Estás muerto :(  ";
+			recargar();
+			$(".stats").css({
+				"background-color": "rgb(234, 134, 134)"
+			});
+			$("#mensaje").addClass("zoomInDown animated");
+		}
+		this.dibujar();
+
 	}
-	this.dibujar();
-};
+}
 
 function iniciar () 
 {
